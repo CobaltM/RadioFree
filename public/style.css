@@ -1,0 +1,46 @@
+body {
+    background-color: lightgrey;
+}
+
+h1 {
+    color: navy;
+    font-size: 25;
+    text-align: center;
+    font-family: verdana;
+}
+b1 {
+	color: navy;
+	font-size: 20;
+	font-family: verdana;
+}
+.boxed {
+
+  border: 2px solid blue ;
+  padding: 10px;
+  margin: 5px;
+  float: left;
+
+}
+.titles{
+	float:left;
+}
+.htn{
+	display:block;
+	float: right;
+}
+.sdn{
+	display:block;
+	float:right;
+}
+.edn{
+	display:block;
+	float:right;
+}
+.buttonstop{
+	display:block;
+	float: right;
+}
+.START{
+	display:block;
+	float:right;
+}
