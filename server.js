@@ -21,6 +21,9 @@ app.use(express.static("public"));
 app.get('/', function (req, res) {
  res.sendFile(path.join(__dirname+'/proto2.html'));
 })
+app.post('/test', function (req, res) {
+ res.sendFile(path.join(__dirname+'/test.html'));
+})
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -30,12 +33,13 @@ app.use(bodyParser.json());
 app.post('/', function(req,res){
 	if(Validation(req.body.hashtagname,req.body.startdate,req.body.enddate)){
 		options.args=transform(req.body.hashtagname,req.body.startdate,req.body.enddate);
-	}
 	//console.log(options.args);
 	PythonShell.run('tweepy_download.py', options, function (err, results) {
  		if (err) throw err;
  			 console.log('results: %j', results);
 });
+	res.redirect(307,'/test');
+	}
 
 
 
