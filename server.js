@@ -8,10 +8,9 @@ var PythonShell = require('python-shell');
 
 var options = {
   mode: 'text',
-  pythonPath: 'C:/Python27/python.exe',
+  pythonPath: 'PYTHONDIRECTORY/python.exe',
   pythonOptions: ['-u'],
-  scriptPath: 'C:/Users/ethan/Desktop/server/resources',
-  args: ["-q","Ferrets","-d","data","-t2","Thu Jan 25 00:00:00 +0000 2018"]
+  scriptPath: 'SERVERDIRECTORY/server/resources',
 };
  
 

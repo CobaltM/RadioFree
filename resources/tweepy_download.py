@@ -95,7 +95,7 @@ if __name__ == '__main__':
 
     name = args.query + "_" + args.time_start_query + "_" + args.time_end_query
     query_fname = format_filename(name)
-    outFile=open("C:/Users/ethan/Desktop/server/resources/data/"+query_fname+".json",'w')
+    outFile=open("SERVERDIRECTORY/server/resources/data/"+query_fname+".json",'w')
     done=0;
     count=0;
     while (done == 0):
