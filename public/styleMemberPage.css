@@ -1,0 +1,75 @@
+body{
+	margin: 0;
+	padding: 0;
+	background-color: #203D30;
+	font-family: sans-serif;
+}
+
+.Dashboard {
+	width: 920px;
+	height: 550px;
+	background: rgba(0, 0, 0, 0.5);
+	color: #fff;
+	top: 60%;
+	left: 50%;
+	position: absolute;
+	transform: translate(-50%,-50%);
+	box-sizing: border-box;
+	padding: 30px 30px;
+}
+
+.logo{
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	position: absolute;
+	top: -110px;
+	left: calc(50% - 50px);
+}
+
+h1{
+	margin: 0;
+	padding: 0 0 20px;
+	text-align: center;
+	font-size: 40px;
+}
+
+.Dashboard p{
+	margin: 0;
+	padding: 20px 100px 50px;
+	font-weight: normal;
+}
+
+.Dashboard input{
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.leftside {
+  position: absolute;
+  left: 0px;
+  width: 40%;
+}
+
+.rightside {
+  position: absolute;
+  right: 0px;
+  width: 60%;
+}
+
+.Dashboard input[type="submit"]{
+	border: none;
+	outline: none;
+	height: 40px;
+	background: #006400;
+	color: #fff;
+	font-size: 18px;
+	border-radius: 20px;
+}
+.Dashboard input[type="submit"]:hover{
+	cursor: pointer;
+	background: #008000;
+	color: #000;
+}
+
+
