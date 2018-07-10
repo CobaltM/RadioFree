@@ -1,7 +1,9 @@
 var express = require('express');
 var app = express();
 var path    = require("path");
+var bodyParser     = require("body-parser");
 var PythonShell = require('python-shell');
+var valid;
 
 var options = {
   mode: 'text',
@@ -13,35 +15,48 @@ var options = {
  
 
 app.use(express.static("public"));
-
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
  res.sendFile(path.join(__dirname+'/HTML forms/login.html'));
- console.log(Validation('username','password!1A'));
+ //Validation('username','password!1A');
  
 })
 app.get('/register', function (req, res) {
  res.sendFile(path.join(__dirname+'/HTML forms/userRegister.html'));
 })
 app.post('/', function(req,res){
-	
 	res.redirect(307,'/register');
-
-
-
-
-
-
-
 })
-app.get('/member',function(req,res){
+app.post('/member',function(req,res){
 	res.sendFile(path.join(__dirname+'/HTML forms/memberPage.html'));
 })
 app.post('/register',function(req,res){
 	console.log('post successful');
-	if(Validation(req.body.registerBox.username,req.body.registerBox.password)){
-		res.redirect(307,'/member');
-	}
+	un=req.body.user;
+	console.log(un);
+	pw=req.body.pass;
+	console.log(pw);
+	options.args=[un,pw];
+	PythonShell.run('/Registration.py',options,function(err,results){
+		if(err) throw err;
+		console.log(results);
+		if(Validation(results)){
+			PythonShell.run('/addUser.py',options,function(err,result){
+				if(err) throw err;
+				console.log(result);
+			});
+			res.redirect(307,'/member');
+		}
+		else{
+			res.redirect(307,'/member');
+			//put notification
+		}
+		console.log(valid);
+	});
 })
 var server = app.listen(3000, function () {
  var host = server.address().address
@@ -50,17 +65,14 @@ var server = app.listen(3000, function () {
 })
 
 
-
-function Validation(un,pw){
-	options.args=[un,pw];
-	var pshel = new PythonShell('/Registration.py',options);
-	pshel.on('message',function(message){
-		test=message[0];
+function Validation(mess){
+	test=mess[0];
 		if(test=="3"){
 			console.log('passes!');
+			return true;
 		}
 		else{
 			console.log('fails!');
+			return false;
 		}
-});
 }

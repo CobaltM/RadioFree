@@ -16,3 +16,4 @@ b=sys.argv[2]
 #print(addUser %(a,b))
 cursor.execute(addUser %(a,b))
 cnx.commit()
+print("success!");

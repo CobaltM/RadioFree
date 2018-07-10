@@ -11,8 +11,7 @@ cursor=cnx.cursor(buffered=True)
 def Registration(un,pw):
     test1=ValidateUsername(un)
     test2=ValidatePassword(pw)*2
-    with open('validation.json', 'w') as outfile:
-        json.dump(test1+test2, outfile)
+    print(test1+test2)
 
 def ValidateUsername(username):
     query=("SELECT username FROM member WHERE username = '{!s}'").format(username)
