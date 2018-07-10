@@ -44,7 +44,7 @@ app.post('/register',function(req,res){
 	PythonShell.run('/Registration.py',options,function(err,results){
 		if(err) throw err;
 		console.log(results);
-		if(Validation(results)){
+		if(ValidationReg(results)){
 			PythonShell.run('/addUser.py',options,function(err,result){
 				if(err) throw err;
 				console.log(result);
@@ -52,11 +52,25 @@ app.post('/register',function(req,res){
 			res.redirect(307,'/member');
 		}
 		else{
-			res.redirect(307,'/member');
 			//put notification
 		}
-		console.log(valid);
 	});
+})
+app.post('/login',function(req,res){
+	console.log('post successful');
+	un=req.body.username;
+	console.log(un);
+	pw=req.body.password;
+	console.log(pw);
+	options.args=[un,pw];
+	PythonShell.run('/Login.py',options,function(err,results){
+		if(err) throw err;
+		console.log(results);
+		if(ValidationLog(results)){
+			res.redirect(307,'/member');
+		}
+	});
+		
 })
 var server = app.listen(3000, function () {
  var host = server.address().address
@@ -65,13 +79,24 @@ var server = app.listen(3000, function () {
 })
 
 
-function Validation(mess){
+function ValidationReg(mess){
 	test=mess[0];
 		if(test=="3"){
 			console.log('passes!');
 			return true;
 		}
 		else{
+			console.log('fails!');
+			return false;
+		}
+}
+function ValidationLog(mess){
+	test=mess[0];
+	if(test=="1"){
+		console.log('passes!');
+		return true;
+	}
+	else{
 			console.log('fails!');
 			return false;
 		}

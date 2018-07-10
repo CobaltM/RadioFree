@@ -1,5 +1,5 @@
 import mysql.connector
-
+import sys
 #pip install mysql-connector
 
 cnx = mysql.connector.connect(host='127.0.0.1',
@@ -16,8 +16,13 @@ def login(username, password):
         cursor.execute(query)
         curp = cursor.fetchone()
         if(cur == curp):
+            print(1)
             return True
         else:
+            print(2)
             return False
     else:
+        print(2)
         return False
+if __name__=='__main__':
+    login(sys.argv[1],sys.argv[2])
