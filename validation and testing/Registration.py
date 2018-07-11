@@ -1,10 +1,19 @@
 import mysql.connector
+import sys
+import json
+import cfgconnection
+
 #pip install mysql-connector
-cnx = mysql.connector.connect(user='root',
-                              host='127.0.0.1',
-                              database='testuserbase')
+cnx = mysql.connector.connect(host=cfgconnection.configh(),
+                              user=cfgconnection.configu(),
+                              database=cfgconnection.configdb())
 #you can add password etc to the fields above
 cursor=cnx.cursor(buffered=True)
+def Registration(un,pw):
+    test1=ValidateUsername(un)
+    test2=ValidatePassword(pw)*2
+    print(test1+test2)
+
 def ValidateUsername(username):
     query=("SELECT username FROM member WHERE username = '{!s}'").format(username)
     #testuserbase is my personal name for the database
@@ -60,6 +69,8 @@ def ValidatePassword(password):
     if(satisfyCap&satisfyLow&satisfyNum&satisfySym):
         return True
     else:
-        return FALSE
+        return False
 cursor.close
 cnx.close
+if __name__=='__main__':
+    Registration(sys.argv[1],sys.argv[2])
