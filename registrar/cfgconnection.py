@@ -7,9 +7,15 @@ def configh():
 def configdb():
     database = 'testuserbase'
     return(database)
-def configp():
-    port = '3306'
-    return(port)
 def configpass():
-    password = 'root'
+    password='root'
     return(password)
+def hasPass():
+    macOS=False
+    return(macOS)
+def configp():
+    if(hasPass()):
+        post='8889'
+    else:
+        post='3306'
+    return (post)

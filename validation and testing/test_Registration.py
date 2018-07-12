@@ -8,11 +8,17 @@ import string
 #extra requirements of a password and username
 
 
-cnx = mysql.connector.connect(host=cfgconnection.configh(),
-                              user=cfgconnection.configu(),
-                              #password=cfgconnection.configpass(),
-                              database=cfgconnection.configdb(),
-                              port=cfgconnection.configp())
+if (cfgconnection.hasPass()):
+    cnx = mysql.connector.connect(host=cfgconnection.configh(),
+                                  user=cfgconnection.configu(),
+                                  password=cfgconnection.configpass(),
+                                  database=cfgconnection.configdb(),
+                                  port=cfgconnection.configp())
+else:
+    cnx = mysql.connector.connect(host=cfgconnection.configh(),
+                                  user=cfgconnection.configu(),
+                                  database=cfgconnection.configdb(),
+                                  port=cfgconnection.configp())
 cursor = cnx.cursor(buffered=True)
 
 class test_Registration(unittest.TestCase):

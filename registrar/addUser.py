@@ -4,11 +4,17 @@ import cfgconnection
 
 #pip install mysql-connector
 
-cnx = mysql.connector.connect(host=cfgconnection.configh(),
-                              user=cfgconnection.configu(),
-                              #password=cfgconnection.configpass(),
-                              database=cfgconnection.configdb(),
-                              port=cfgconnection.configp())
+if (cfgconnection.hasPass()):
+    cnx = mysql.connector.connect(host=cfgconnection.configh(),
+                                  user=cfgconnection.configu(),
+                                  password=cfgconnection.configpass(),
+                                  database=cfgconnection.configdb(),
+                                  port=cfgconnection.configp())
+else:
+    cnx = mysql.connector.connect(host=cfgconnection.configh(),
+                                  user=cfgconnection.configu(),
+                                  database=cfgconnection.configdb(),
+                                  port=cfgconnection.configp())
 addUser=("insert into member"
 	    "(username, password) "
         "values ('%s','%s')")
