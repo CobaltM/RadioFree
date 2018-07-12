@@ -9,7 +9,7 @@ import cfgconnection
 
 cnx = mysql.connector.connect(host=cfgconnection.configh(),
                               user=cfgconnection.configu(),
-                              #password=cfgconnection.configpass,
+                              #password=cfgconnection.configpass(),
                               database=cfgconnection.configdb(),
                               port=cfgconnection.configp())
 cursor = cnx.cursor(buffered=True)
