@@ -2,6 +2,7 @@ import unittest
 import mysql.connector
 import Login
 import string
+import cfgconnection
 
 #this tests the limits of registering a user by
 
@@ -9,7 +10,7 @@ import string
 cnx = mysql.connector.connect(host=cfgconnection.configh(),
                               user=cfgconnection.configu(),
                               database=cfgconnection.configdb(),
-                              port=cfgconnection.configp)
+                              port=cfgconnection.configp())
 cursor = cnx.cursor(buffered=True)
 cursor2 = cnx.cursor(buffered=True)
 

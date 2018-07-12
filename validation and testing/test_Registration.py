@@ -1,6 +1,7 @@
 import unittest
 import mysql.connector
 import Registration
+import cfgconnection
 import string
 
 #this tests inputting a new member by checking if a user has the correct length username and password, and meets the
@@ -10,7 +11,7 @@ import string
 cnx = mysql.connector.connect(host=cfgconnection.configh(),
                               user=cfgconnection.configu(),
                               database=cfgconnection.configdb(),
-                              port=cfgconnection.configp)
+                              port=cfgconnection.configp())
 cursor = cnx.cursor(buffered=True)
 
 class test_Registration(unittest.TestCase):

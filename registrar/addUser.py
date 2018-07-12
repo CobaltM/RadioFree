@@ -7,7 +7,7 @@ import cfgconnection
 cnx = mysql.connector.connect(host=cfgconnection.configh(),
                               user=cfgconnection.configu(),
                               database=cfgconnection.configdb(),
-                              port=cfgconnection.configp)
+                              port=cfgconnection.configp())
 addUser=("insert into member"
 	    "(username, password) "
         "values ('%s','%s')")
