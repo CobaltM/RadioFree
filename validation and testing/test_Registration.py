@@ -7,9 +7,10 @@ import string
 #extra requirements of a password and username
 
 
-cnx = mysql.connector.connect(user='root',
-                              host='127.0.0.1',
-                              database='testuserbase')
+cnx = mysql.connector.connect(host=cfgconnection.configh(),
+                              user=cfgconnection.configu(),
+                              database=cfgconnection.configdb(),
+                              port=cfgconnection.configp)
 cursor = cnx.cursor(buffered=True)
 
 class test_Registration(unittest.TestCase):

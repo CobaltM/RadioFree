@@ -6,9 +6,10 @@ import string
 #this tests the limits of registering a user by
 
 
-cnx = mysql.connector.connect(user='root',
-                              host='127.0.0.1',
-                              database='testuserbase')
+cnx = mysql.connector.connect(host=cfgconnection.configh(),
+                              user=cfgconnection.configu(),
+                              database=cfgconnection.configdb(),
+                              port=cfgconnection.configp)
 cursor = cnx.cursor(buffered=True)
 cursor2 = cnx.cursor(buffered=True)
 
