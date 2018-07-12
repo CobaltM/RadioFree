@@ -19,7 +19,7 @@ def hasPass():
     return(macOS)
 def configp():
     if(hasPass()):
-        post='3306'
+        post='8889'
     else:
         post='3306'
     return (post)

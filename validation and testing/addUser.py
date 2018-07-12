@@ -1,21 +1,27 @@
 import mysql.connector
 import sys
-import cfgconnection
 
 #pip install mysql-connector
+import cfgconnection
+
+
 cnx = mysql.connector.connect(host=cfgconnection.configh(),
                               user=cfgconnection.configu(),
                               password=cfgconnection.configpass(),
                               database=cfgconnection.configdb(),
                               port=cfgconnection.configp())
-addUser=("insert into member"
-	    "(username, password) "
-        "values ('%s','%s')")
+query="SELECT COUNT(*) FROM testuserbase.member"
 cursor = cnx.cursor(buffered=True)
+cursor.execute(query)
+ct=cursor.fetchone()
+ct=ct[0]
+addUser=("insert into member"
+	    "(username, password, room_id) "
+        "values ('%s','%s','%d')")
+
 a=sys.argv[1]
 b=sys.argv[2]
 #addUser, %(a,b)
 #print(addUser %(a,b))
-cursor.execute(addUser %(a,b))
+cursor.execute(addUser %(a,b,ct))
 cnx.commit()
-print("success!");
