@@ -7,3 +7,6 @@ def configh():
 def configdb():
     database = 'testuserbase'
     return(database)
+def configp():
+    port = '3306'
+    return(port)
