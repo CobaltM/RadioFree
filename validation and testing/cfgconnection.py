@@ -10,3 +10,6 @@ def configdb():
 def configp():
     port = '3306'
     return(port)
+def configpass():
+    password = 'root'
+    return(password)

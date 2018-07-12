@@ -5,6 +5,7 @@ import cfgconnection
 
 cnx = mysql.connector.connect(host=cfgconnection.configh(),
                               user=cfgconnection.configu(),
+                              #password=cfgconnection.configpass,
                               database=cfgconnection.configdb(),
                               port=cfgconnection.configp())
 #you can add password etc to the fields above
