@@ -8,14 +8,18 @@ def configdb():
     database = 'testuserbase'
     return(database)
 def configpass():
-    password='root'
+    if(hasPass()):
+        password='root'
+    else:
+        password=False
     return(password)
 def hasPass():
     macOS=False
+    #Change this to "True" if running on mamp
     return(macOS)
 def configp():
     if(hasPass()):
-        post='8889'
+        post='3306'
     else:
         post='3306'
     return (post)

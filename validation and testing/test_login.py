@@ -7,17 +7,11 @@ import cfgconnection
 #this tests the limits of registering a user by
 
 
-if (cfgconnection.hasPass()):
-    cnx = mysql.connector.connect(host=cfgconnection.configh(),
-                                  user=cfgconnection.configu(),
-                                  password=cfgconnection.configpass(),
-                                  database=cfgconnection.configdb(),
-                                  port=cfgconnection.configp())
-else:
-    cnx = mysql.connector.connect(host=cfgconnection.configh(),
-                                  user=cfgconnection.configu(),
-                                  database=cfgconnection.configdb(),
-                                  port=cfgconnection.configp())
+cnx = mysql.connector.connect(host=cfgconnection.configh(),
+                              user=cfgconnection.configu(),
+                              password=cfgconnection.configpass(),
+                              database=cfgconnection.configdb(),
+                              port=cfgconnection.configp())
 cursor = cnx.cursor(buffered=True)
 cursor2 = cnx.cursor(buffered=True)
 
