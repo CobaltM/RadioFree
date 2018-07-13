@@ -5,7 +5,7 @@ def configh():
     host = '127.0.0.1'
     return(host)
 def configdb():
-    database = 'testuserbase'
+    database = 'RadioFreeDatabase'
     return(database)
 def configpass():
     if(hasPass()):
