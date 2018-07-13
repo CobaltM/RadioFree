@@ -10,18 +10,18 @@ cnx = mysql.connector.connect(host=cfgconnection.configh(),
                               password=cfgconnection.configpass(),
                               database=cfgconnection.configdb(),
                               port=cfgconnection.configp())
-query="SELECT COUNT(*) FROM testuserbase.member"
+query="SELECT COUNT(*) FROM member"
 cursor = cnx.cursor(buffered=True)
 cursor.execute(query)
 ct=cursor.fetchone()
 ct=ct[0]
 addUser=("insert into member"
-	    "(username, password, room_id) "
-        "values ('%s','%s','%d')")
+	    "(username, password, room_id,isBroadcasting) "
+        "values ('%s','%s','%d','%d')")
 
 a=sys.argv[1]
 b=sys.argv[2]
 #addUser, %(a,b)
 #print(addUser %(a,b))
-cursor.execute(addUser %(a,b,ct))
+cursor.execute(addUser %(a,b,ct,0))
 cnx.commit()

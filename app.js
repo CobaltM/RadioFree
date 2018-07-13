@@ -11,7 +11,7 @@ var options = {
   pythonOptions: ['-u'],
   scriptPath: path.join(__dirname+'/registrar')
 };
-//these don't matter yet, and are subject to change, but will be helpful later
+//Change pythonPath to your local python executable
  
 
 app.use(express.static("public"));
