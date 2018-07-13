@@ -7,45 +7,60 @@ var valid;
 
 var options = {
   mode: 'text',
-  pythonPath: 'C:/Python27/python.exe',
+  pythonPath: 'C:/Users/trimo/.windows-build-tools/python27/python.exe',
   pythonOptions: ['-u'],
-  scriptPath: path.join(__dirname+'/registrar')
+  scriptPath: path.join(__dirname+'/python-scripts')
 };
-//Change pythonPath to your local python executable
- 
+
+//these don't matter yet, and are subject to change, but will be helpful later
+
+/* Server Routing Section */
 
 app.use(express.static("public"));
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
 app.use(bodyParser.json());
 
+// GET Request 
+
 app.get('/', function (req, res) {
- res.sendFile(path.join(__dirname+'/HTML forms/login.html'));
- //Validation('username','password!1A');
- 
+    res.sendFile(path.join(__dirname+'/HTML forms/login.html'));
+    //Validation('username','password!1A'); 
 })
+
 app.get('/register', function (req, res) {
- res.sendFile(path.join(__dirname+'/HTML forms/userRegister.html'));
+    res.sendFile(path.join(__dirname+'/HTML forms/userRegister.html'));
 })
+
+// Post Request
+
 app.post('/', function(req,res){
-	res.redirect(307,'/register');
+    res.redirect(307,'/register');
 })
-app.post('/member',function(req,res){
-	res.sendFile(path.join(__dirname+'/HTML forms/memberPage.html'));
+
+app.post('/member', function(req,res){
+    res.sendFile(path.join(__dirname+'/HTML forms/memberPage.html'));
 })
-app.post('/register',function(req,res){
-	console.log('post successful');
-	un=req.body.user;
-	console.log(un);
-	pw=req.body.pass;
-	console.log(pw);
-	options.args=[un,pw];
-	PythonShell.run('/Registration.py',options,function(err,results){
-		if(err) throw err;
-		console.log(results);
+
+app.post('/register',function(req,res){	
+
+    un=req.body.user;	
+    pw=req.body.pass;	
+	
+    console.log('post successful');
+    console.log(pw);
+    console.log(un);
+
+    options.args=[un,pw];
+
+    PythonShell.run('/registrar/Registration.py', options, function(err,results){    	
+    	if(err) throw err; 
+    	console.log(results);		
 		if(ValidationReg(results)){
-			PythonShell.run('/addUser.py',options,function(err,result){
+			PythonShell.run('/registrar/addUser.py', options,function(err,result){
 				if(err) throw err;
 				console.log(result);
 			});
@@ -56,28 +71,46 @@ app.post('/register',function(req,res){
 		}
 	});
 })
+
 app.post('/login',function(req,res){
-	console.log('post successful');
+
 	un=req.body.username;
-	console.log(un);
 	pw=req.body.password;
+
+    console.log('post successful');	
+	console.log(un);
 	console.log(pw);
+
 	options.args=[un,pw];
-	PythonShell.run('/Login.py',options,function(err,results){
-		if(err) throw err;
+	
+	PythonShell.run('/registrar/Login.py',options,function(err,results){		
+		if(err) throw err;		
 		console.log(results);
-		if(ValidationLog(results)){
+		if(ValidationLog(results)){		
 			res.redirect(307,'/member');
 		}
 	});
-		
-})
-var server = app.listen(3000, function () {
- var host = server.address().address
- var port = server.address().port
- console.log("Example app listening at http://%s:%s", host, port)
+			
 })
 
+// Creating a room 
+app.post('/createRoom', function(req, res) {
+
+	PythonShell.run('/room/addRoom.py', options, function(err, results) {
+		
+	})
+
+
+
+})
+
+/* Server Configuration Section */ 
+
+var server = app.listen(3000, function () {
+	var host = server.address().address
+	var port = server.address().port
+	console.log("Example app listening at http://%s:%s", host, port)
+}); 
 
 function ValidationReg(mess){
 	test=mess[0];
@@ -90,6 +123,7 @@ function ValidationReg(mess){
 			return false;
 		}
 }
+
 function ValidationLog(mess){
 	test=mess[0];
 	if(test=="1"){
