@@ -7,12 +7,10 @@ var valid;
 
 var options = {
   mode: 'text',
-  pythonPath: 'C:/Users/trimo/.windows-build-tools/python27/python.exe',
+  pythonPath: 'C:/python27/python.exe',
   pythonOptions: ['-u'],
   scriptPath: path.join(__dirname+'/python-scripts')
 };
-
-//these don't matter yet, and are subject to change, but will be helpful later
 
 /* Server Routing Section */
 
@@ -95,7 +93,7 @@ app.post('/login',function(req,res){
 
 // Creating a room 
 app.post('/createRoom', function(req, res) {
-
+	res.sendFile(path.join(__dirname+'/HTML forms/createRoom.html'));
 	PythonShell.run('/room/addRoom.py', options, function(err, results) {
 		
 	})
@@ -111,7 +109,7 @@ var server = app.listen(3000, function () {
 	var port = server.address().port
 	console.log("Example app listening at http://%s:%s", host, port)
 }); 
-
+/* Python output interpreters */
 function ValidationReg(mess){
 	test=mess[0];
 		if(test=="3"){
