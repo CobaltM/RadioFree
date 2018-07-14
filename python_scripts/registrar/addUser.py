@@ -15,8 +15,11 @@ cursor = cnx.cursor(buffered=True)
 cursor.execute(query)
 ct=cursor.fetchone()
 ct=ct[0]
+
 addUser=("insert into member"
-	    "(username, password, room_id,isBroadcasting) "
+	    "(username, password, room_id,"
+	    " ip, followerCount, follower_id,"
+	    " isBroadcasting) "
         "values ('%s','%s','%d','%d')")
 
 a=sys.argv[1]

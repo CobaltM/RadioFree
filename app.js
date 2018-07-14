@@ -7,9 +7,9 @@ var valid;
 
 var options = {
   mode: 'text',
-  pythonPath: 'C:/python27/python.exe',
+  pythonPath: 'C:/Users/trimo/.windows-build-tools/python27/python.exe',
   pythonOptions: ['-u'],
-  scriptPath: path.join(__dirname+'/python-scripts')
+  scriptPath: path.join(__dirname+'/python_scripts')
 };
 
 /* Server Routing Section */
@@ -25,12 +25,23 @@ app.use(bodyParser.json());
 // GET Request 
 
 app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname+'/HTML forms/login.html'));
+    res.sendFile(path.join(__dirname+'/HTML_forms/login.html'));
     //Validation('username','password!1A'); 
 })
 
 app.get('/register', function (req, res) {
-    res.sendFile(path.join(__dirname+'/HTML forms/userRegister.html'));
+    res.sendFile(path.join(__dirname+'/HTML_forms/userRegister.html'));
+})
+
+// Creating a room 
+app.get('/createRoom', function(req, res) {
+	res.sendFile(path.join(__dirname+'/HTML_forms/createRoom.html'));
+	PythonShell.run('/room/addRoom.py', options, function(err, results) {
+		
+	})
+
+
+
 })
 
 // Post Request
@@ -40,7 +51,7 @@ app.post('/', function(req,res){
 })
 
 app.post('/member', function(req,res){
-    res.sendFile(path.join(__dirname+'/HTML forms/memberPage.html'));
+    res.sendFile(path.join(__dirname+'/HTML_forms/memberPage.html'));
 })
 
 app.post('/register',function(req,res){	
@@ -91,16 +102,24 @@ app.post('/login',function(req,res){
 			
 })
 
-// Creating a room 
 app.post('/createRoom', function(req, res) {
-	res.sendFile(path.join(__dirname+'/HTML forms/createRoom.html'));
-	PythonShell.run('/room/addRoom.py', options, function(err, results) {
-		
+	console.log("POST SUCCESSFUL");
+	// Get and Process Form data 
+	var eggs = req.body; 
+	console.log(eggs);
+
+	// Execute Database command to save to database get 
+	PythonShell.run('/room/createRoom.py/', options, function(err, results){
+		if (err) throw err; 
+		console.log(results); 
+
+
+
 	})
 
 
-
 })
+
 
 /* Server Configuration Section */ 
 
