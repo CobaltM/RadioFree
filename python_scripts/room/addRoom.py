@@ -21,9 +21,8 @@ cursor.execute(query)
 ct=cursor.fetchone()
 ct=ct[0]
 
-# Columns for room
-# Don't include the room_id because it is generated AUTO INCREMET on mysql 
-# Make sure broadcaster is a valid existing username 
+
+# SET Sql query
 
 broadcaster = 'white'
 spotifyLink = ct
@@ -33,12 +32,13 @@ numberOfListeners = 666
 chatId = 999
 listenersId = 888
 
-
 addRoom=("insert into room"
 	    "(broadcaster, spotifyLink,"
 	    " url, description, numberOfListeners,"
 	    " chat_id, listeners_id)"
         "values ('%s','%d','%s','%s','%d','%d','%d')")
+
+# Execute SQL query
 
 cursor.execute(addRoom %( 
 	broadcaster , 
@@ -48,5 +48,4 @@ cursor.execute(addRoom %(
 	numberOfListeners,
 	chatId,
 	listenersId))
-
 cnx.commit()

@@ -39,10 +39,17 @@ app.get('/createRoom', function(req, res) {
 	PythonShell.run('/room/addRoom.py', options, function(err, results) {
 		
 	})
-
-
-
 })
+
+// Get unique Room 
+app.get('/broadcasting-*', function(req, res) {
+
+	var userId = req.params[0];
+	console.log(userId);
+
+	res.sendFile(path.join(__dirname)+'/HTML_forms/roomPage.html');
+
+});
 
 // Post Request
 
@@ -58,12 +65,14 @@ app.post('/register',function(req,res){
 
     un=req.body.user;	
     pw=req.body.pass;	
+    var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 	
+	console.log(ip);
     console.log('post successful');
     console.log(pw);
     console.log(un);
 
-    options.args=[un,pw];
+    options.args=[un,pw,ip];
 
     PythonShell.run('/registrar/Registration.py', options, function(err,results){    	
     	if(err) throw err; 
@@ -103,7 +112,7 @@ app.post('/login',function(req,res){
 })
 
 app.post('/createRoom', function(req, res) {
-	console.log("POST SUCCESSFUL");
+	
 	// Get and Process Form data 
 	var eggs = req.body; 
 	console.log(eggs);
