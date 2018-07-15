@@ -116,6 +116,10 @@ app.post('/createRoom', function(req, res) {
 	// Get and Process Form data 
 	var eggs = req.body; 
 	console.log(eggs);
+	res.sendFile(path.join(__dirname+'/HTML_forms/createRoom.html'));
+	PythonShell.run('/room/addRoom.py', options, function(err, results) {
+		
+	})
 
 	// Execute Database command to save to database get 
 	PythonShell.run('/room/createRoom.py/', options, function(err, results){
