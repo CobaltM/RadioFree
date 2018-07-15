@@ -7,7 +7,7 @@ var valid;
 
 var options = {
   mode: 'text',
-  pythonPath: 'C:/python27/python.exe',
+  pythonPath: 'C:/Users/trimo/.windows-build-tools/python27/python.exe',
   pythonOptions: ['-u'],
   scriptPath: path.join(__dirname+'/python_scripts')
 };
@@ -33,6 +33,24 @@ app.get('/register', function (req, res) {
     res.sendFile(path.join(__dirname+'/HTML_forms/userRegister.html'));
 })
 
+// Creating a room 
+app.get('/createRoom', function(req, res) {
+	res.sendFile(path.join(__dirname+'/HTML_forms/createRoom.html'));
+	PythonShell.run('/room/addRoom.py', options, function(err, results) {
+		
+	})
+})
+
+// Get unique Room 
+app.get('/broadcasting-*', function(req, res) {
+
+	var userId = req.params[0];
+	console.log(userId);
+
+	res.sendFile(path.join(__dirname)+'/HTML_forms/roomPage.html');
+
+});
+
 // Post Request
 
 app.post('/', function(req,res){
@@ -47,12 +65,14 @@ app.post('/register',function(req,res){
 
     un=req.body.user;	
     pw=req.body.pass;	
+    var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 	
+	console.log(ip);
     console.log('post successful');
     console.log(pw);
     console.log(un);
 
-    options.args=[un,pw];
+    options.args=[un,pw,ip];
 
     PythonShell.run('/registrar/Registration.py', options, function(err,results){    	
     	if(err) throw err; 
@@ -91,16 +111,28 @@ app.post('/login',function(req,res){
 			
 })
 
-// Creating a room 
 app.post('/createRoom', function(req, res) {
+	
+	// Get and Process Form data 
+	var eggs = req.body; 
+	console.log(eggs);
 	res.sendFile(path.join(__dirname+'/HTML_forms/createRoom.html'));
 	PythonShell.run('/room/addRoom.py', options, function(err, results) {
 		
 	})
 
+	// Execute Database command to save to database get 
+	PythonShell.run('/room/createRoom.py/', options, function(err, results){
+		if (err) throw err; 
+		console.log(results); 
+
+
+
+	})
 
 
 })
+
 
 /* Server Configuration Section */ 
 
