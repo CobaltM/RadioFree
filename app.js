@@ -7,7 +7,7 @@ var valid;
 
 var options = {
   mode: 'text',
-  pythonPath: 'C:/Users/trimo/.windows-build-tools/python27/python.exe',
+  pythonPath: 'C:/python27/python.exe',
   pythonOptions: ['-u'],
   scriptPath: path.join(__dirname+'/python_scripts')
 };

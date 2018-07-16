@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `RadioFreeDatabase` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `RadioFreeDatabase`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: testuserbase
+-- Host: localhost    Database: radiofreedatabase
 -- ------------------------------------------------------
 -- Server version	5.7.21
 
@@ -42,7 +40,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES ('black','thunder',1,NULL,NULL,NULL,NULL),('joe','aruba',2,NULL,NULL,NULL,NULL),('kev','sev',3,NULL,NULL,NULL,NULL),('litany','violence',4,NULL,NULL,NULL,NULL),('pale','wind',5,NULL,NULL,NULL,NULL),('password1','aruba1',6,NULL,NULL,NULL,NULL),('red','napalm',7,NULL,NULL,NULL,NULL),('testa','testb',8,NULL,NULL,NULL,NULL),('white','steel',9,NULL,NULL,NULL,NULL);
+INSERT INTO `member` VALUES ('black','thunder',1,NULL,NULL,NULL,NULL),('joe','aruba',2,NULL,NULL,NULL,NULL),('kev','sev',3,NULL,NULL,NULL,NULL),('litany','violence',4,NULL,NULL,NULL,NULL),('orange','test',10,NULL,NULL,NULL,NULL),('pale','wind',5,NULL,NULL,NULL,NULL),('password1','aruba1',6,NULL,NULL,NULL,NULL),('red','napalm',7,NULL,NULL,NULL,NULL),('testa','testb',8,NULL,NULL,NULL,NULL),('white','steel',9,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,7 +112,7 @@ DROP TABLE IF EXISTS `room`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `room` (
-  `room_id` int(11) NOT NULL, 
+  `room_id` int(11) NOT NULL,
   `broadcaster` varchar(16) DEFAULT NULL,
   `spotifyLink` tinyint(4) DEFAULT NULL,
   `url` varchar(16) DEFAULT NULL,
@@ -122,6 +120,9 @@ CREATE TABLE `room` (
   `numberOfListeners` int(11) DEFAULT NULL,
   `chat_id` int(11) DEFAULT NULL,
   `listeners_id` int(11) DEFAULT NULL,
+  `maxNumberOfListeners` int(11) DEFAULT NULL,
+  `spotifyURI` varchar(200) DEFAULT NULL,
+  `roomName` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`room_id`),
   KEY `broadcastuser_idx` (`broadcaster`),
   CONSTRAINT `broadcastuser` FOREIGN KEY (`broadcaster`) REFERENCES `member` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -134,7 +135,7 @@ CREATE TABLE `room` (
 
 LOCK TABLES `room` WRITE;
 /*!40000 ALTER TABLE `room` DISABLE KEYS */;
-INSERT INTO `room` VALUES (1,'black',1,'aaaaaX','listen to music!',NULL,NULL,NULL);
+INSERT INTO `room` VALUES (1,'black',1,'aaaaaX','listen to music!',NULL,NULL,NULL,NULL,NULL,NULL),(2,'joe',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,'kev',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,'litany',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(5,'pale',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6,'password1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(7,'red',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(8,'testa',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(9,'white',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(10,'orange',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `room` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,6 +153,7 @@ CREATE TABLE `room_public` (
   `numberOfListeners` int(11) DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
   `url` varchar(45) DEFAULT NULL,
+  `roomName` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`room_id`),
   CONSTRAINT `publictoid` FOREIGN KEY (`room_id`) REFERENCES `room` (`room_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -198,4 +200,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-07-12 20:37:37
+-- Dump completed on 2018-07-16 14:45:29
