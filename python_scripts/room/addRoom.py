@@ -12,31 +12,24 @@ cnx = mysql.connector.connect(host=cfgconnection.configh(),
                               database=cfgconnection.configdb(),
                               port=cfgconnection.configp())
 
-# Example Python Query 
-query="SELECT 2 + 4 as Solution"
-
 cursor = cnx.cursor(buffered=True)
 cursor.execute(query)
 
 ct=cursor.fetchone()
 ct=ct[0]
 
-
 # SET Sql query
-
-broadcaster = 'white'
-spotifyLink = ct
-url = 'https://badbitchesofatlanta.com'
-description = 'reymond'
-numberOfListeners = 666
-chatId = 999
-listenersId = 888
+username=sys.argv[1],
+roomname=sys.argv[2],
+maxListeners = sys.argv[3],
+spotifyURI=sys.argv[4],
+description=sys.argv[5]
 
 addRoom=("insert into room"
-	    "(broadcaster, spotifyLink,"
-	    " url, description, numberOfListeners,"
-	    " chat_id, listeners_id)"
-        "values ('%s','%d','%s','%s','%d','%d','%d')")
+	    "(username, roomname,"
+	    " maxNumberOfListeners, spotifyURI,"
+	    " description)" 
+        "values ('%s','%s','%d','%s','%s')")
 
 # Execute SQL query
 
