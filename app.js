@@ -2,25 +2,26 @@ var express = require('express');
 var app = express();
 var path    = require("path");
 var bodyParser     = require("body-parser");
+var cookieParser = require('cookie-parser'); 
+
 var PythonShell = require('python-shell');
 var valid;
 
 var options = {
   mode: 'text',
-  pythonPath: 'C:/python27/python.exe',
+  pythonPath: 'C:/Users/trimo/.windows-build-tools/python27/python.exe', 
   pythonOptions: ['-u'],
   scriptPath: path.join(__dirname+'/python_scripts')
 };
 
 /* Server Routing Section */
-
+app.use(cookieParser());
 app.use(express.static("public"));
-
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-
 app.use(bodyParser.json());
+
 
 // GET Request 
 
@@ -100,36 +101,45 @@ app.post('/login',function(req,res){
 	console.log(pw);
 
 	options.args=[un,pw];
-	
-	PythonShell.run('/registrar/Login.py',options,function(err,results){		
+
+	// Set the username in the cookie to be used again. 
+	res.cookie('username', un);
+				
+	PythonShell.run('/registrar/Login.py',options, function(err,results){		
 		if(err) throw err;		
 		console.log(results);
 		if(ValidationLog(results)){		
 			res.redirect(307,'/member');
+		} else {
+			alert("Your validation failed");
 		}
 	});
 			
 })
 
 app.post('/createRoom', function(req, res) {
-	
+	console.log("POST CREATE ROOM");
 	// Get and Process Form data 
-	var eggs = req.body; 
-	console.log(eggs);
 	res.sendFile(path.join(__dirname+'/HTML_forms/createRoom.html'));
-	PythonShell.run('/room/addRoom.py', options, function(err, results) {
-		
-	})
 
-	// Execute Database command to save to database get 
-	PythonShell.run('/room/createRoom.py/', options, function(err, results){
-		if (err) throw err; 
-		console.log(results); 
+		console.log("request object" + req); 
+		console.log("Request body" + req.body);
+		console.log("user name: " + req.cookies);
 
+		// Get the values to be inserted in room with Python 
+		var username = "white"; 
+		var roomname = req.body[0];
+		var maxListeners = req.body[1];
+		var spotifyURI= req.body[2];
+		var description= req.body[3];
 
+		options.args = [username, roomname, maxListeners, spotifyURI, description];
 
-	})
+		PythonShell.run('/room/addRoom.py', options, function(err, results) {
+			if(err) throw err;		
+				console.log(results);
 
+		})
 
 })
 

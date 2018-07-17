@@ -8,15 +8,15 @@
 		<div class="createRoom">
 			<h1> Create Your Room </h1>
 			<img src="logo.png" class="logo">
-			<form>
+			<form method="post" action="/createRoom">
 				<p>Room's Name</p>
 				<input type="text" name="full name" placeholder="Enter Your Name" required>
 				
 				<p>Number of Listeners</p>
-				<input type="number" step="1" max="10"  name="email" placeholder="Maximum number of listeners" required>
+				<input type="number" step="1" max="10"  name="maxListeners" placeholder="Maximum number of listeners" required>
 
 				<p>Link to Spotify's Playlist</p>
-				<input type="text" name="email" placeholder="Enter a Spotify Link" required>
+				<input type="text" name="spotifyLink" placeholder="Enter a Spotify Link" required>
 
 				<p>Description</p>
 				<input type="text" name="username" placeholder="Enter Username" required>

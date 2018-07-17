@@ -12,7 +12,7 @@ cnx = mysql.connector.connect(host=cfgconnection.configh(),
                               port=cfgconnection.configp())
 
 
-# Generate room_id using the number of memebers 
+# Generate room_id usin'g the number of memebers 
 query="SELECT COUNT(*) FROM member"
 cursor = cnx.cursor(buffered=True)
 cursor.execute(query)
