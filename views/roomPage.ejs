@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<title> Room Page - Radio Free </title>
+		<link rel="stylesheet" type="text/css" href="styleRoomPage.css">
+		<script
+			src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=", crossorigin="anonymous"></script>	
+<!-- Include the Web Playback SDK -->
+		<script src="https://sdk.scdn.co/spotify-player.js">
+		</script>
+    
+    <!-- Include our Javascript -->
+		<script src="script.js" defer>
+		</script>	  
+	</head>
+	
+
+	<body>
+		<div class="Dashboard">
+
+		<img src="logo.png" class="logo">	
+		
+		<div class="leftside">
+			<p>		
+			<img id="current-track"/>
+			<h3 id="current-track-name"></h3>
+			</head>
+			</p>
+
+			<p>Copy URL to Share</p>
+			<p><input type="text" name="URL" placeholder="https://www.randomlists.com/urls"></p>
+			
+		</div>
+		<div class="rightside">
+			<p><input type="submit" name="leaveroom" value="Leave Room">    
+			<input type="submit" name="logout" value="Log Out"></p>
+			<p><textarea rows="20" cols="50"> Message Board </textarea></p>
+			<p><input type="submit" name="submit" value="Submit"></p>		
+		</div>
+		</div>
+		
+	</body>
+</html>

@@ -1,0 +1,71 @@
+body{
+	margin: 0;
+	padding: 0;
+	background-color: #203D30;
+	font-family: sans-serif;
+}
+
+.Dashboard {
+	width: 920px;
+	height: 550px;
+	background: rgba(0, 0, 0, 0.5);
+	color: #fff;
+	top: 60%;
+	left: 50%;
+	position: absolute;
+	transform: translate(-50%,-50%);
+	box-sizing: border-box;
+	padding: 30px 30px;
+}
+
+.logo{
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	position: absolute;
+	top: -110px;
+	left: calc(50% - 50px);
+}
+
+.Dashboard p{
+	margin: 0;
+	padding: 20px 50px 10px;
+	font-weight: bold;
+}
+
+.Dashboard input{
+	width: 50%;
+	margin-bottom: 20px;
+}
+
+.leftside {
+  position: absolute;
+  left: 0px;
+  width: 50%;
+}
+
+.rightside {
+  position: absolute;
+  right: 0px;
+  width: 50%;
+}
+
+.Dashboard input[type="submit"]{
+	border: none;
+	outline: none;
+	height: 30px;
+	background: #006400;
+	color: #fff;
+	font-size: 18px;
+	border-radius: 20px;
+	float: right;
+}
+.Dashboard input[type="submit"]:hover{
+	cursor: pointer;
+	background: #008000;
+	color: #000;
+}
+
+
+
+

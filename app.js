@@ -3,13 +3,14 @@ var app = express();
 var path    = require("path");
 var bodyParser     = require("body-parser");
 var cookieParser = require('cookie-parser'); 
-
+var socket = require('socket.io');
 var PythonShell = require('python-shell');
 var valid;
 
+
 var options = {
   mode: 'text',
-  pythonPath: 'C:/Users/trimo/.windows-build-tools/python27/python.exe', 
+  pythonPath: 'C:/python27/python.exe', 
   pythonOptions: ['-u'],
   scriptPath: path.join(__dirname+'/python_scripts')
 };
@@ -48,9 +49,29 @@ app.get('/broadcasting-*', function(req, res) {
 	var userId = req.params[0];
 	console.log(userId);
 
-	res.sendFile(path.join(__dirname)+'/HTML_forms/roomPage.html');
+	res.redirect('/room/');
 
 });
+app.use('/broadcasting-*/script.js',function(req,res){
+	res.sendFile(path.join(__dirname+'/public/script.js'));
+});
+app.use('/broadcasting-*/styleRoomPage.css',function(req,res){
+	res.sendFile(path.join(__dirname+'/public/styleRoomPage.css'));
+});
+app.get('/room/',function(req,res) {
+	res.sendFile(path.join(__dirname+'/HTML_forms/roomPage.html'));
+// Post Request
+});
+app.use('/room/script.js',function(req,res){
+	res.sendFile(path.join(__dirname+'/public/script.js'));
+});
+app.use('/room/styleRoomPage.css',function(req,res){
+	res.sendFile(path.join(__dirname+'/public/styleRoomPage.css'));
+});
+app.get('/room/logo.png',function(req,res){
+	res.sendFile(path.join(__dirname+'/public/logo.png'));
+});
+
 
 // Post Request
 
@@ -151,6 +172,23 @@ var server = app.listen(3000, function () {
 	var port = server.address().port
 	console.log("Example app listening at http://%s:%s", host, port)
 }); 
+
+
+
+
+var io = socket(server);
+
+io.on('connection',function(socket){
+	console.log('test',socket.id);
+	socket.on('chat',function(data){
+		io.sockets.emit('chat',data);
+	});
+});
+
+
+
+
+
 /* Python output interpreters */
 function ValidationReg(mess){
 	test=mess[0];

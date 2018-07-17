@@ -1,8 +1,20 @@
 <html>
 	<head>
 		<title> Room Page - Radio Free </title>
-		<link rel="stylesheet" type="text/css" href="styleRoomPage.css">	
+		<link rel="stylesheet" type="text/css" href="styleRoomPage.css">
+		<script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>	
+<!-- Include the Web Playback SDK -->
+		<script src="https://sdk.scdn.co/spotify-player.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+    <!-- Include our Javascript -->
+		<script src="script.js" defer></script>
+	<!-- socket -->
+		
 	</head>
+	
 
 	<body>
 		<div class="Dashboard">
@@ -11,17 +23,32 @@
 		
 		<div class="leftside">
 			<p>		
-			<iframe src="https://open.spotify.com/embed?uri=spotify%3Auser%3Amusic_glue%3Aplaylist%3A5L3szV8h9CfAd8WuTERbrs" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+			<img id="current-track"/>
+			<h3 id="current-track-name"></h3>
+			</head>
 			</p>
 
-			<p>Copy URL to Share</p>
-			<p><input type="text" name="URL" placeholder="https://www.randomlists.com/urls"></p>
+			<p>Song URI's</p>
+			<div id='playlist'><input type="text" name="URL" placeholder='"spotify:track:0dEIca2nhcxDUV8C5QkPYb","spotify:track:3ctALmweZBapfBdFiIVpji"'></div>
 			
 		</div>
-		<div class="rightside">d
+		<div class="rightside">
 			<p><input type="submit" name="leaveroom" value="Leave Room">    
 			<input type="submit" name="logout" value="Log Out"></p>
-			<p><textarea rows="20" cols="50"> Message Board </textarea></p>
+			<p>
+        
+        <div id="mario-chat">
+            <h2>Chat</h2>
+            <div id="chat-window">
+                <div id="output"></div>
+            </div>
+            <input id="handle" type="text" placeholder="Handle" />
+            <input id="message" type="text" placeholder="Message" />
+            <button id="send">Send</button>
+        </div>
+
+    </body>
+			</p>
 			<p><input type="submit" name="submit" value="Submit"></p>		
 		</div>
 		</div>
