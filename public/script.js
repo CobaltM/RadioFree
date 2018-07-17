@@ -1,5 +1,5 @@
 // Get the hash of the url
-var socket = io.connect('http://localhost:4000');
+var socket = io.connect('http://localhost:3000');
 
 // Query DOM
 var message = document.getElementById('message'),
