@@ -132,7 +132,7 @@ app.post('/login',function(req,res){
 		if(ValidationLog(results)){		
 			res.redirect(307,'/member');
 		} else {
-			alert("Your validation failed");
+			
 		}
 	});
 			
