@@ -118,7 +118,7 @@ app.post('/login',function(req,res){
 })
 
 app.post('/createRoom', function(req, res) {
-	
+	console.log("POST CREATE ROOM");
 	// Get and Process Form data 
 	res.sendFile(path.join(__dirname+'/HTML_forms/createRoom.html'));
 
@@ -136,8 +136,10 @@ app.post('/createRoom', function(req, res) {
 		options.args = [username, roomname, maxListeners, spotifyURI, description];
 
 		PythonShell.run('/room/addRoom.py', options, function(err, results) {
-		
-	})
+			if(err) throw err;		
+				console.log(results);
+
+		})
 
 })
 

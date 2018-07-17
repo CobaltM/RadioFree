@@ -13,16 +13,12 @@ cnx = mysql.connector.connect(host=cfgconnection.configh(),
                               port=cfgconnection.configp())
 
 cursor = cnx.cursor(buffered=True)
-cursor.execute(query)
-
-ct=cursor.fetchone()
-ct=ct[0]
-
+	
 # SET Sql query
-username=sys.argv[1],
-roomname=sys.argv[2],
-maxListeners = sys.argv[3],
-spotifyURI=sys.argv[4],
+username=sys.argv[1]
+roomname=sys.argv[2]
+maxListeners = sys.argv[3]
+spotifyURI=sys.argv[4]
 description=sys.argv[5]
 
 addRoom=("insert into room"
@@ -34,11 +30,9 @@ addRoom=("insert into room"
 # Execute SQL query
 
 cursor.execute(addRoom %( 
-	broadcaster , 
-	spotifyLink , 
-	url,
-	description,
-	numberOfListeners,
-	chatId,
-	listenersId))
+	username,
+	roomname,
+	maxListeners,
+	spotifyURI,
+	description))
 cnx.commit()
