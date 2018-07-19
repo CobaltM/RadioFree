@@ -37,7 +37,7 @@ app.get('/register', function (req, res) {
 
 // Creating a room 
 app.get('/createRoom', function(req, res) {
-	res.redirect('/room');
+	res.redirect('/room/');
 })
 
 // Get unique Room 
