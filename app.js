@@ -37,10 +37,7 @@ app.get('/register', function (req, res) {
 
 // Creating a room 
 app.get('/createRoom', function(req, res) {
-	res.sendFile(path.join(__dirname+'/HTML_forms/createRoom.html'));
-	PythonShell.run('/room/addRoom.py', options, function(err, results) {
-		
-	})
+	res.redirect('/room');
 })
 
 // Get unique Room 

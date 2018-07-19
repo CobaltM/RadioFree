@@ -37,13 +37,14 @@ const hash = window.location.hash
 window.location.hash = '';
 // Set token
 let _token = hash.access_token;
+console.log(_token);
 console.log('hello');
 
 const authEndpoint = 'https://accounts.spotify.com/authorize';
 
 // Replace with your app's client ID, redirect URI and desired scopes
 const clientId = 'c45b9f08b8f94e9fb5650ab6bf202238';
-const redirectUri = 'http://localhost:3000/room/';
+const redirectUri = 'https://radiofree.ngrok.io/room/';
 const scopes = [
   'streaming',
   'playlist-read-private',
@@ -51,7 +52,6 @@ const scopes = [
   'user-read-birthdate',
   'user-read-private',
   'user-modify-playback-state',
-  'user-read-playback-state'
 ];
 
 // If there is no token, redirect to Spotify authorization
@@ -101,7 +101,7 @@ function play(device_id) {
   $.ajax({
    url: "https://api.spotify.com/v1/me/player/play?device_id=" + device_id,
    type: "PUT",
-   data: '{"uris": ["spotify:track:0dEIca2nhcxDUV8C5QkPYb","spotify:track:3ctALmweZBapfBdFiIVpji"]}',
+   data: '{"uris": ["spotify:track:69kOkLUCkxIZYexIgSG8rq","spotify:track:3ctALmweZBapfBdFiIVpji"]}',
    beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
    success: function(data) { 
 	player.getCurrentState().then(state => {
