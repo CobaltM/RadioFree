@@ -1,10 +1,9 @@
 
 # Project Description
-A web music streaming service which broadcasts a host’s music to be synchronously listened to by providing a website link to their "room". The website would include embedded links to music playlists . When people visit the room, they are synced to the playlist. 
+A web music streaming service which broadcasts a host’s music to be synchronously listened to by providing a website link to their "room". The website includes embedded links to music playlists . When people visit the room, they are synced to the playlist. 
 The website will also have a database of users storing their relation to other users including friends and statistics on the user.
 This application allows users to share and analyze their music in a live format and fills an unfilled niche of users, such as those who wish to feel as though they’re listening to a record at home with their closest friends with the convenience the internet can offer.
-This project would be similar to this site which uses youtube and vimeo videos 
-https://sync-video.com/
+
 This project aims to provide users with a social media infused way to share their favorite songs and playlists.  Listeners will be able to chat with one another and broadcast their own playlists to their friends while they are using other social media elements.
 
 
