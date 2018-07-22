@@ -25,7 +25,7 @@ https://github.com/CobaltM/RadioFree/tree/Development?files=1
 4. copy and run its contents into a script in the new database 
 5. if necessary configure “cfgconnection.py” under python_scripts, registration directory to match your database server  connections 
 6. changing the macos value to true automatically configures for mamp servers 
-## edit app.js in the unzipped repository and change the value of pythonPath on line 14 to the location of your python executable file 
+## edit app.js in the unzipped repository and change the value of pythonPath on line 13 to the location of your python executable file 
 # Starting the server
 create a terminal/cmd prompt from the unzipped repository directory 
 ## run the following commands 
